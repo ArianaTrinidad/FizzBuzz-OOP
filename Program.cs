@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FizzBuzz_OOP.Entities;
+using System;
 
 namespace FizzBuzz_OOP
 {
@@ -11,25 +12,31 @@ namespace FizzBuzz_OOP
             Console.WriteLine("Cuando sea multiplo de 5 escribir Buzz!");
             Console.WriteLine("Cuando sea multiplo de 3 y de 5 escribir FizzBuzz!");
 
-            for (int i = 1; i <= 100; i++)
+            for (int index = 1; index <= 100; index++)
             {
-                if (i % 3 == 0 && i % 5 == 0)
+                var fizz = new Fizz(index);
+                var buzz = new Buzz(index);
+
+                if (fizz.EsDivisiblePor3 && buzz.EsDivisiblePor5)
                 {
-                    Console.WriteLine("FizzBuzz");
+                    Console.WriteLine($"{ fizz.GetType().Name}{buzz.GetType().Name}");
                 }
-                else if (i % 3 == 0)
+                else if (buzz.EsDivisiblePor5)
                 {
-                    Console.WriteLine("Fizz");
+                    buzz.PrintName();
                 }
-                else if (i % 5 == 0)
+                else if (fizz.EsDivisiblePor3)
                 {
-                    Console.WriteLine("Buzz");
+                    fizz.PrintName();
                 }
-                else if (i % 3 != 0 && i % 5 != 0)
+                else
                 {
-                    Console.WriteLine($"{i}");
+                    Console.WriteLine(index);
                 }
-            };
+            }
+
+
+            Console.ReadLine();
         }
     }
 }
